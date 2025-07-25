@@ -54,8 +54,18 @@ class Chord():
             case Inversion.SECOND_INVERSION:
                 val = 2
         
-        # slicing mode might not in all cases
-        return f'{val} {self.tonic.value}{duration}:{self.mode.value[:3]}{"7" if "DOMINANT" in self.inversion.name else ""}'
+        accidental = ''
+        if len(self.tonic.value) > 1:
+            match self.tonic.value[1]:
+                case 'b':
+                    accidental = 'es'
+                case '#':
+                    accidental = 'is'
+                case _:
+                    accidental = ''
+
+        # slicing mode might work not in all cases
+        return f'{val} {self.tonic.value[0] + accidental}{duration}:{self.mode.value[:3]}{"7" if "DOMINANT" in self.inversion.name else ""}'
 
     def get_scale(self, roman_numeral, tonic):
         order_sharps = ['f', 'c', 'g', 'd', 'a', 'e', 'b']
