@@ -65,8 +65,8 @@ class Chord():
                     accidental = ''
  
 
-        # slicing mode might work not in all cases
-        return f'{val} {self.note.value[0] + accidental}{duration}:{self.mode.value[:3]}{"7" if "DOMINANT" in self.inversion.name else ""}'
+        mode_abr = ":" + self.mode.value[:3] if self.mode != Mode.MAJOR else ''
+        return f'{val} {self.note.value[0] + accidental}{duration}{mode_abr}{"7" if "DOMINANT" in self.inversion.name else ""}'
 
     def get_scale(self, roman_numeral, tonic):
         order_sharps = ['f', 'c', 'g', 'd', 'a', 'e', 'b']

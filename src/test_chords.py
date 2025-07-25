@@ -49,10 +49,10 @@ class TestChords(unittest.TestCase):
     def test_to_lily(self):
         rn = Roman_Numeral(Numeral.I, Inversion.ROOT, Mode.MAJOR)
         c = Chord(rn, Natural.C)
-        self.assertEqual(c.to_lily(), '0 c1:maj')
+        self.assertEqual(c.to_lily(), '0 c1')
         rn = Roman_Numeral(Numeral.I, Inversion.FIRST_INVERSION, Mode.MINOR)
         c = Chord(rn, Natural.D)
         self.assertEqual(c.to_lily(), '1 d1:min')
         rn = Roman_Numeral(Numeral.I, Inversion.SECOND_INVERSION, Mode.MAJOR)
         c = Chord(rn, Flat.B)
-        self.assertEqual(c.to_lily(), '2 bes1:maj')
+        self.assertEqual(c.to_lily(), '2 bes1')
