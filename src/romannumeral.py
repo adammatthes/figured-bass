@@ -34,3 +34,20 @@ class Roman_Numeral():
 
     def __str__(self):
         return f'{self.numeral.value.upper() if self.mode == Mode.MAJOR else self.numeral.value} {"o" if self.mode == Mode.DIMINISHED else ""}{self.inversion.value}'
+
+    def arabic(self):
+        match self.numeral:
+            case Numeral.I:
+                return 1
+            case Numeral.ii:
+                return 2
+            case Numeral.iii:
+                return 3
+            case Numeral.IV:
+                return 4
+            case Numeral.V:
+                return 5
+            case Numeral.vi:
+                return 6
+            case Numeral.vii:
+                return 7
