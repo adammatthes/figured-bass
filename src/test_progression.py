@@ -13,5 +13,12 @@ class TestProgression(unittest.TestCase):
         with open('tmp.ly', 'w') as lily_file:
             lily_file.write(lily_content)
         subprocess.run(['lilypond', 'tmp.ly'])
-        #subprocess.run(['rm', 'tmp.ly'])
+        subprocess.run(['rm', 'tmp.ly'])
+        numerals = [I, iii6, V, vi, V64, V, I]
+        p = Progression(numerals)
+        lily_content = p.to_lily()
+        with open('tmp.ly', 'w') as lily_file:
+            lily_file.write(lily_content)
+        subprocess.run(['lilypond', 'tmp.ly'])
+        subprocess.run(['rm', 'tmp.ly', 'tmp.pdf'])
 
