@@ -17,3 +17,8 @@ class TestChords(unittest.TestCase):
         rn = Roman_Numeral(Numeral.I, Inversion.SECOND_INVERSION, Mode.MINOR)
         c = Chord(rn, Natural.F)
         self.assertEqual(c.__str__(), "f minor 6/4")
+
+    def test_scale_content(self):
+        rn = Roman_Numeral(Numeral.I, Inversion.ROOT, Mode.MAJOR)
+        c = Chord(rn, Natural.C)
+        self.assertEqual(c.scale, [Natural(n) for n in ['c', 'd', 'e', 'f', 'g', 'a', 'b']])

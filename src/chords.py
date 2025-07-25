@@ -92,6 +92,8 @@ class Chord():
                     if s.value.startswith(sig):
                         scale[i] = Sharp(f'{sig}#')
 
+        rotate_index = scale.index(tonic)
+        scale = scale[rotate_index:] + scale[:rotate_index]
         return scale
 
 
