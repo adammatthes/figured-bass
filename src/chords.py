@@ -82,7 +82,7 @@ class Chord():
         if not sharp_or_flat['sharp']:
             signature = order_flats[:sharp_or_flat['flat']]
             for sig in signature:
-                for i, s in ennumerate(scale):
+                for i, s in enumerate(scale):
                     if s.value.startswith(sig):
                         scale[i] = Flat(f'{sig}b')
         else:
