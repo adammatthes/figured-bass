@@ -1,11 +1,11 @@
 from enum import Enum
 
 class Numeral(Enum):
-    I = "I"
+    I = "i"
     ii = "ii"
     iii = "iii"
-    IV = "IV"
-    V = "V"
+    IV = "iv"
+    V = "v"
     vi = "vi"
     vii = "vii"
 
@@ -33,4 +33,4 @@ class Roman_Numeral():
         self.mode = mode
 
     def __str__(self):
-        return f'{self.numeral.value.upper() if self.mode == Mode.MAJOR else self.numeral.value} {self.inversion.value}'
+        return f'{self.numeral.value.upper() if self.mode == Mode.MAJOR else self.numeral.value} {"o" if self.mode == Mode.DIMINISHED else ""}{self.inversion.value}'
