@@ -33,3 +33,15 @@ class TestChords(unittest.TestCase):
         self.assertEqual(c.scale, [Flat(n) for n in ['ab', 'bb', 'cb', 'db', 'eb', 'fb', 'gb']])
         c = Chord(rn, Sharp.C)
         self.assertEqual(c.scale, [Sharp(n) if len(n) > 1 else Natural(n) for n in ['c#', 'd#', 'e', 'f#', 'g#', 'a', 'b']])
+
+    def test_enharmonic_sub(self):
+        rn = Roman_Numeral(Numeral.I, Inversion.ROOT, Mode.MAJOR)
+        c = Chord(rn, Flat.F)
+        self.assertEqual(c.scale, [Sharp(n) if len(n) > 1 else Natural(n) for n in ['e', 'f#', 'g#', 'a', 'b', 'c#', 'd#']])
+        c = Chord(rn, Sharp.B)
+        self.assertEqual(c.scale, [Natural(n) for n in ['c', 'd', 'e', 'f', 'g', 'a', 'b']])
+        rn = Roman_Numeral(Numeral.I, Inversion.ROOT, Mode.MINOR)
+        c = Chord(rn, Flat.C)
+        self.assertEqual(c.scale, [Natural(n) if len(n) == 1 else Sharp(n) for n in ['b', 'c#', 'd', 'e', 'f#', 'g', 'a']])
+        c = Chord(rn, Sharp.A)
+        self.assertEqual(c.scale, [Flat(n) if len(n) > 1 else Natural(n) for n in ['bb', 'c', 'db', 'eb', 'f', 'gb', 'ab']])

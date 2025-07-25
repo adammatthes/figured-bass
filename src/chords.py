@@ -75,11 +75,28 @@ class Chord():
                 'bb': {'major': {'sharp': 0, 'flat': 2}, 'minor': {'sharp': 0, 'flat': 5}}
                 }
 
+        
+        enharmonic_subs = {
+                'd#': Flat('eb'),
+                'e#': Natural('f'),
+                'g#': Flat('ab'),
+                'a#': Flat('bb'),
+                'b#': Natural('c'),
+                'cb': Natural('b'),
+                'db': Sharp('c#'),
+                'fb': Natural('e'),
+                'gb': Sharp('f#')
+                }
+
+        
         sharp_or_flat = accidental_quantity[tonic.value][roman_numeral.mode.value]
+        if sharp_or_flat is None:
+            tonic = enharmonic_subs[tonic.value]
+            sharp_or_flat = accidental_quantity[tonic.value][roman_numeral.mode.value]
 
         signature = []
         scale = [n for n in Natural]
-        if not sharp_or_flat['sharp']:
+        if sharp_or_flat['sharp'] == 0:
             signature = order_flats[:sharp_or_flat['flat']]
             for sig in signature:
                 for i, s in enumerate(scale):
