@@ -45,3 +45,8 @@ class TestChords(unittest.TestCase):
         self.assertEqual(c.scale, [Natural(n) if len(n) == 1 else Sharp(n) for n in ['b', 'c#', 'd', 'e', 'f#', 'g', 'a']])
         c = Chord(rn, Sharp.A)
         self.assertEqual(c.scale, [Flat(n) if len(n) > 1 else Natural(n) for n in ['bb', 'c', 'db', 'eb', 'f', 'gb', 'ab']])
+
+    def test_to_lily(self):
+        rn = Roman_Numeral(Numeral.I, Inversion.ROOT, Mode.MAJOR)
+        c = Chord(rn, Natural.C)
+        self.assertEqual(c.to_lily(), '0 c1:maj')

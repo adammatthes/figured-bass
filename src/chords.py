@@ -1,6 +1,6 @@
 from enum import Enum
 
-from romannumeral import Mode
+from romannumeral import Mode, Inversion
 
 class Natural(Enum):
     A = 'a'
@@ -43,6 +43,19 @@ class Chord():
 
     def __str__(self):
         return f'{self.tonic.value} {self.mode.value} {self.inversion.value}'
+
+    def to_lily(self, duration=1):
+        val = 0
+        match self.inversion:
+            case Inversion.ROOT:
+                val = 0
+            case Inversion.FIRST_INVERSION:
+                val = 1
+            case Inversion.SECOND_INVERSION:
+                val = 2
+        
+        # slicing mode might not in all cases
+        return f'{val} {self.tonic.value}{duration}:{self.mode.value[:3]}{"7" if "DOMINANT" in self.inversion.name else ""}'
 
     def get_scale(self, roman_numeral, tonic):
         order_sharps = ['f', 'c', 'g', 'd', 'a', 'e', 'b']
