@@ -113,7 +113,10 @@ class Chord():
                 }
 
         
-        sharp_or_flat = accidental_quantity[tonic.value][roman_numeral.mode.value]
+        try:
+            sharp_or_flat = accidental_quantity[tonic.value][roman_numeral.mode.value]
+        except KeyError:
+            sharp_or_flat = accidental_quantity[tonic.value]['major']
         if sharp_or_flat is None:
             tonic = enharmonic_subs[tonic.value]
             sharp_or_flat = accidental_quantity[tonic.value][roman_numeral.mode.value]

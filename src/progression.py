@@ -12,11 +12,15 @@ class Progression():
 
     def to_lily(self):
         content = []
-        content.append('version "2.22.1"\n')
-        content.append("\chordmode {\n")
+        content.append('version "2.22.1"')
+        content.append('\score {')
+        content.append("\chordmode {")
         #content.append("\\new Staff {")
         for c in self.chords:
-            content.append('\invertChords ' + f'{c.to_lily()}{chr(10)}')
+            content.append('\invertChords ' + f'{c.to_lily(4)}{chr(10)}')
 
-        content.append("}\n")
+        
+        content.append("}")
+        content.append("\midi { }")
+        content.append("}")
         return ''.join(content)

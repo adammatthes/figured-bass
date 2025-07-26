@@ -3,12 +3,16 @@
 from romannumeral import Roman_Numeral
 from chords import Chord
 from progression import Progression
+from harmony_graph import Harmony_Graph, I
 import subprocess
+import sys
+import random
+
 
 def setup_output_folder():
     folder_not_found = subprocess.run(['find', 'lily_output'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode
     if folder_not_found:
-        subprocess.run(['mkdir', 'lily_output'])
+        subprocess.run(['mkdir', '-m', '744', 'lily_output'])
     else:
         subprocess.run(['rm', 'lily_output/*'])
 
@@ -16,8 +20,32 @@ def setup_output_folder():
 
 
 def main():
+    try:
+        progression_length = int(sys.argv[1])
+    except (IndexError, ValueError):
+        progression_length = 20
+
 
     setup_output_folder()
+
+    hg = Harmony_Graph()
+
+    numerals = [I]
+    
+    for _ in range(progression_length):
+        choices = list(hg.graph[numerals[-1]])
+        numerals.append(choices[random.randrange(0, len(choices))])
+
+    p = Progression(numerals)
+
+    content = p.to_lily()
+
+    with open('lily_output/output.ly', 'w') as lily_file:
+        lily_file.write(content)
+
+    subprocess.run(['lilypond', '-dbackend=null', 'lily_output/output.ly' ])
+
+    subprocess.run(['aplaymidi', 'output.midi'])
 
 
 
