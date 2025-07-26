@@ -4,6 +4,7 @@ from romannumeral import Roman_Numeral
 from chords import Chord
 from progression import Progression
 from harmony_graph import Harmony_Graph, I
+from present import present
 import subprocess
 import sys
 import random
@@ -46,14 +47,8 @@ def main():
 
     subprocess.run(['lilypond', '-dbackend=null', 'lily_output/output.ly' ])
 
-    pygame.init()
-    pygame.mixer.music.load('output.midi')
-    pygame.mixer.music.play()
+    present('output.midi')
 
-    while pygame.mixer.music.get_busy():
-        pygame.time.wait(1000)
-
-    pygame.quit()
 
 
 
