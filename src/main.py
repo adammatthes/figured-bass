@@ -7,6 +7,7 @@ from harmony_graph import Harmony_Graph, I
 import subprocess
 import sys
 import random
+import pygame
 
 
 def setup_output_folder():
@@ -45,8 +46,14 @@ def main():
 
     subprocess.run(['lilypond', '-dbackend=null', 'lily_output/output.ly' ])
 
-    subprocess.run(['aplaymidi', 'output.midi'])
+    pygame.init()
+    pygame.mixer.music.load('output.midi')
+    pygame.mixer.music.play()
 
+    while pygame.mixer.music.get_busy():
+        pygame.time.wait(1000)
+
+    pygame.quit()
 
 
 
