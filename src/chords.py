@@ -40,9 +40,11 @@ class Chord():
         self.mode = roman_numeral.mode
         self.inversion = roman_numeral.inversion
         self.note = self.scale[roman_numeral.arabic() - 1]
+        if roman_numeral.numeral.value == 'bII6':
+            self.note = Flat(f'{self.note.value}b')
 
     def __str__(self):
-        return f'{self.tonic.value} {self.mode.value} {self.inversion.value}'
+        return f'{self.note.value} {self.mode.value} {self.inversion.value}'
 
     def to_lily(self, duration=1):
         val = 0
@@ -55,8 +57,8 @@ class Chord():
                 val = 2
         
         accidental = ''
-        if len(self.tonic.value) > 1:
-            match self.tonic.value[1]:
+        if len(self.note.value) > 1:
+            match self.note.value[1]:
                 case 'b':
                     accidental = 'es'
                 case '#':
@@ -138,6 +140,7 @@ class Chord():
 
         rotate_index = scale.index(tonic)
         scale = scale[rotate_index:] + scale[:rotate_index]
+
         return scale
 
 

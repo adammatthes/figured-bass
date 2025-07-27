@@ -3,6 +3,7 @@ from enum import Enum
 class Numeral(Enum):
     I = "i"
     ii = "ii"
+    bII6 = "bII6"
     iii = "iii"
     IV = "iv"
     V = "v"
@@ -33,6 +34,9 @@ class Roman_Numeral():
         self.mode = mode
 
     def __str__(self):
+        if self.numeral.value == 'bII6':
+            return self.numeral.value
+
         return f'{self.numeral.value.upper() if self.mode == Mode.MAJOR else self.numeral.value} {"o" if self.mode == Mode.DIMINISHED else ""}{self.inversion.value}'
 
     def arabic(self):
@@ -40,6 +44,8 @@ class Roman_Numeral():
             case Numeral.I:
                 return 1
             case Numeral.ii:
+                return 2
+            case Numeral.bII6:
                 return 2
             case Numeral.iii:
                 return 3

@@ -6,6 +6,7 @@ I6 = Roman_Numeral(Numeral.I, Inversion.FIRST_INVERSION, Mode.MAJOR)
 
 ii = Roman_Numeral(Numeral.ii, Inversion.ROOT, Mode.MINOR)
 ii6 = Roman_Numeral(Numeral.ii, Inversion.FIRST_INVERSION, Mode.MINOR)
+bII6 = Roman_Numeral(Numeral.bII6, Inversion.FIRST_INVERSION, Mode.MAJOR)
 
 iii = Roman_Numeral(Numeral.iii, Inversion.ROOT, Mode.MINOR)
 iii6 = Roman_Numeral(Numeral.iii, Inversion.FIRST_INVERSION, Mode.MINOR)
@@ -26,10 +27,11 @@ viio6 = Roman_Numeral(Numeral.vii, Inversion.FIRST_INVERSION, Mode.DIMINISHED)
 class Harmony_Graph():
     def __init__(self):
         self.graph = {
-            I: {iii, IV, IV6, V, V6, vi, viio},
+            I: {bII6, iii, IV, IV6, V, V6, vi, viio},
             I6: {IV, V, ii, V6, IV6, V64},
             ii: {IV, V, V6, viio6},
             ii6: {V, V6, V64, viio6},
+            bII6: {V64, V},
             iii: {IV, vi},
             iii6: {IV, vi},
             IV: {V, V6, ii, I, I6},
