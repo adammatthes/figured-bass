@@ -53,4 +53,6 @@ If arguments are not provided, the default number of chords is 20 and default bp
 
 - To try and alleviate the first program, I decided to try and introduce a Neopolitan chord to the Harmony\_Graph; I somehow introduced some new, inadvertent harmonies as well, though I guess it makes output a little more colorful, even if it's technically stretching functional tonal harmony.
 
-- I don't think I had a very strong plan for how to make a visual. It came about when I learned that pygame could play MIDI, so I tried to syncronize something. I did get the spawning of lines to line up with the tempo, but that was about it. It is kinda amusing, though, if you bump up the bpm to 200+. 
+- I don't think I had a very strong plan for how to make a visual. It came about when I learned that pygame could play MIDI, so I tried to syncronize something. I did get the spawning of lines to line up with the tempo, but that was about it. It is kinda amusing, though, if you bump up the bpm to 200+.
+
+- There's more I need to learn about lilypond. There's certain threshold notes that cause the chord to leap an octave; the voicing isn't as good as it could be. 
