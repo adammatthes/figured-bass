@@ -10,7 +10,7 @@ class Progression():
     def __str__(self):
         return ' '.join(str(s) for s in self.numerals)
 
-    def to_lily(self):
+    def to_lily(self, tempo=60):
         content = []
         content.append('version "2.22.1"')
         content.append('\score {')
@@ -21,6 +21,6 @@ class Progression():
 
         
         content.append("}")
-        content.append("\midi { }")
+        content.append(f"\midi {'{'} \\tempo 4 = {tempo} {'}'}")
         content.append("}")
         return ''.join(content)

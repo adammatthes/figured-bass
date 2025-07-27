@@ -18,7 +18,7 @@ def setup_output_folder():
     if folder_not_found:
         subprocess.run(['mkdir', '-m', '744', 'lily_output'])
     else:
-        subprocess.run(['rm', 'lily_output/*'],
+        subprocess.run(['rm', 'lily_output/*.ly'],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL)
 
@@ -30,6 +30,11 @@ def main():
         progression_length = int(sys.argv[1])
     except (IndexError, ValueError):
         progression_length = 20
+
+    try:
+        tempo = int(sys.argv[2])
+    except (IndexError, ValueError):
+        tempo = 60
 
 
     setup_output_folder()
@@ -44,7 +49,7 @@ def main():
 
     p = Progression(numerals)
 
-    content = p.to_lily()
+    content = p.to_lily(tempo)
 
     with open('lily_output/output.ly', 'w') as lily_file:
         lily_file.write(content)
@@ -53,7 +58,7 @@ def main():
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL)
 
-    present('output.midi')
+    present('output.midi', tempo)
 
 
 

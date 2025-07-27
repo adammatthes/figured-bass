@@ -64,7 +64,7 @@ def is_valid_point(x, y):
     return 0 <= x < SCREEN_WIDTH and 0 <= y < SCREEN_HEIGHT
 
 
-def present(midi_file):
+def present(midi_file, tempo):
     pygame.init()
     pygame.mixer.init()
     
@@ -81,10 +81,12 @@ def present(midi_file):
 
     last_spawn_time = pygame.time.get_ticks()
 
+    tempo_convert = 1000 / (tempo / 60)
+
     active_lines.append(Line(
         (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2),
         LINE_SPEED,
-        1000,
+        tempo_convert,
         LINE_THICKNESS,
         get_random_color()
     ))
@@ -113,7 +115,7 @@ def present(midi_file):
             running = False
 
 
-        if current_ticks - last_spawn_time >= SPAWN_INTERVAL:
+        if current_ticks - last_spawn_time >= tempo_convert:
             start_x = random.randint(0, SCREEN_WIDTH)
             start_y = random.randint(0, SCREEN_HEIGHT)
             next_color = get_random_color()
