@@ -8,13 +8,13 @@ This is a program I created over the weekend of 25-27 July 2025 for a Hackathon 
 
 Run the script _install.sh_ to install requirements in addition to python. Those requirements include:
 
-- lilypond: think LaTeX for sheet music. Go [here](https://lilypond.org/doc/v2.23/Documentation/web/index) for more information.
+- LilyPond: think LaTeX for sheet music. Go [here](https://lilypond.org/doc/v2.23/Documentation/web/index) for more information.
 
 - pygame: a library for making games, also happened to be one of the simpler ways to get a program to play a midi file.
 
 - timidity: this is the midi player pygame needed
 
-It might be worth mentioning that a function that sets up an output folder for the lilypond file uses the _find_ command as a check, in case your distribution doesn't have it.
+It might be worth mentioning that a function that sets up an output folder for the LilyPond file uses the _find_ command as a check, in case your distribution doesn't have it.
 
 ## Running the program
 
@@ -38,14 +38,14 @@ If arguments are not provided, the default number of chords is 20 and default bp
 
 - Chord:
 	- class that holds information about an absolute harmony derived from its roman numeral representation and a specified tonic.
-	- has a method to create the required chord representation in lilypond
+	- has a method to create the required chord representation in LilyPond.
 
 - Progression
 	- class that holds a list of roman numerals and chord equivalents.
-	- has a method to create the entire content of a lilypond file based on the its progression
+	- has a method to create the entire content of a LilyPond file based on the its progression.
 
 - Harmony\_Graph:
-	- an adjacency list that holds edges to each available roman numeral 
+	- an adjacency list that holds edges to each available roman numeral that would consitute a logical progression. 
 
 ## Flaws that are painfully obvious
 
@@ -55,4 +55,4 @@ If arguments are not provided, the default number of chords is 20 and default bp
 
 - I don't think I had a very strong plan for how to make a visual. It came about when I learned that pygame could play MIDI, so I tried to syncronize something. I did get the spawning of lines to line up with the tempo, but that was about it. It is kinda amusing, though, if you bump up the bpm to 200+.
 
-- There's more I need to learn about lilypond. There's certain threshold notes that cause the chord to leap an octave; the voicing isn't as good as it could be. 
+- There's more I need to learn about LilyPond. There's certain threshold notes that cause the chord to leap an octave; the voicing isn't as good as it could be. 
