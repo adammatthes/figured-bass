@@ -12,11 +12,15 @@ import pygame
 
 
 def setup_output_folder():
-    folder_not_found = subprocess.run(['find', 'lily_output'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode
+    folder_not_found = subprocess.run(['find', 'lily_output'],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL).returncode
     if folder_not_found:
         subprocess.run(['mkdir', '-m', '744', 'lily_output'])
     else:
-        subprocess.run(['rm', 'lily_output/*'])
+        subprocess.run(['rm', 'lily_output/*'],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL)
 
 
 
@@ -45,7 +49,9 @@ def main():
     with open('lily_output/output.ly', 'w') as lily_file:
         lily_file.write(content)
 
-    subprocess.run(['lilypond', '-dbackend=null', 'lily_output/output.ly' ])
+    subprocess.run(['lilypond', '-dbackend=null', 'lily_output/output.ly'],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL)
 
     present('output.midi')
 
